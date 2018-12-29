@@ -14,7 +14,6 @@ const handleHome(req, res) {
 
 const handleProfile(req, res) => res.send("You are on my Profile");
 
-
 app.get("/", handleHome);
 
 app.get("/profile", handleProfile);
