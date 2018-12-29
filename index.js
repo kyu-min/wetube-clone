@@ -1,3 +1,4 @@
+const express = require("express");
 import express = from "express";
  const app = express();
  
@@ -9,7 +10,7 @@ import express = from "express";
 
 const handleHome(req, res) {
     console.log(req);
-    res.send("Hello from Home");
+    res.send("Hello from my home!");
 }
 
 const handleProfile(req, res) => res.send("You are on my Profile");
