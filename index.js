@@ -7,12 +7,12 @@ const app = express();
   console.log(`Listening on: http://localhost:${PORT}`);
 }
 
-const handleHome(req, res) {
+const handleHome = (req, res) => {
     console.log(req);
     res.send("Hello from my home!");
 }
 
-const handleProfile(req, res) => res.send("You are on my Profile");
+const handleProfile = (req, res) => res.send("You are on my Profile");
 
 app.get("/", handleHome);
 
