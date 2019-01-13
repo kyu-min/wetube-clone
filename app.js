@@ -7,21 +7,27 @@ import { userRouter } from "./router";
 /* export const userRouter = express.Router();가 export default app;처럼 디폴트로 설정되지 않았기에 import 해주어야 한다.*/
 const app = express(); // var app = express(); 어플리케이션!
 
+/*
+
 const handleHome = (req, res) => {
   // ES6의 Arrow Function. 편함.
   // 서버에서 Route에 응답
   console.log(req);
   res.send("Hello from my home!");
 };
-/* var handleHome = function handleHome(req, res) {
+
+=  var handleHome = function handleHome(req, res) {
     console.log(req);
     res.send("Hello from my home!");
-}; */
+}; 
 
 const handleProfile = (req, res) => res.send("You are on my Profile"); // 서버에서 Route에 응답
-/* var handleProfile = function handleProfile(req, res) {
+
+= var handleProfile = function handleProfile(req, res) {
   return res.send("You are on my Profile");
-}; */
+}; 
+
+*/
 
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -29,9 +35,14 @@ app.use(bodyParser.urlencoded({ extended: true })); // Route
 app.use(morgan("dev")); // morgan이 이 단계에서 모든 걸 기억한다.
 app.use(helmet()); // express의 한 기능이며, node.js의 보안을 위한 역할을 한다.
 
+/*
+
 app.get("/", handleHome); // Route, "/"가 Home임!
 
 app.get("/profile", handleProfile); // Route
+
+
+*/
 
 app.use("/user", userRouter);
 /* 원래 app.get("/user")에 import한 userRouter를 준 것.
@@ -64,4 +75,6 @@ export default app; // init.js에서 app.js를 사용하기 위해 app object를
    MVC= M : Model (모델은 데이터다.)
         V : View (데이터가 어떻게 생겼는지.)
         C : Control (컨트롤러는 데이터를 보여주는 함수.(= 데이터를 찾는 함수))
+      
+      즉, MVC를 일종의 끝내는 구조라고 생각하면 된다. 이건 그냥 패턴일 뿐.
    */
