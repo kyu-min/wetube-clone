@@ -6,6 +6,8 @@ import bodyParser from "body-parser"; //
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 import globalRouter from "./routers/globalRouter";
+import routes from "./routes";
+
 /* export const userRouter = express.Router();가 export default app;처럼 디폴트로 설정되지 않았기에 import 해주어야 한다.*/
 const app = express(); // var app = express(); 어플리케이션!
 
@@ -37,9 +39,9 @@ app.use(bodyParser.urlencoded({ extended: true })); // Route
 app.use(helmet()); // express의 한 기능이며, node.js의 보안을 위한 역할을 한다.
 app.use(morgan("dev")); // morgan이 이 단계에서 모든 걸 기억한다.
 
-app.use("/", globalRouter);
-app.use("/users", userRouter);
-app.use("/videos", videoRouter);
+app.use(routes.home, globalRouter);
+app.use(routes.users, userRouter);
+app.use(routes.videos, videoRouter);
 
 /*
 
@@ -50,9 +52,11 @@ app.get("/profile", handleProfile); // Route
 
 */
 
-app.use("/user", userRouter);
-/* 원래 app.get("/user")에 import한 userRouter를 준 것.
-   여기서 use의 의미는 누군가 /user 경로에 접속하면 이 router 전체를 사용하겠다는 의미.
+/*
+  app.use("/user", userRouter);
+  원래 app.get("/user")에 import한 userRouter를 준 것.
+  여기서 use의 의미는 누군가 /user 경로에 접속하면 이 router 전체를 사용하겠다는 의미.
+   
    */
 
 export default app; // init.js에서 app.js를 사용하기 위해 app object를 export!
