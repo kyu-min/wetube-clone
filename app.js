@@ -4,9 +4,10 @@ import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import { userRouter } from "./router";
-const app = express(); // var app = express();
+const app = express(); // var app = express(); 어플리케이션!
 
 const handleHome = (req, res) => {
+  // ES6의 Arrow Function. 편함.
   // 서버에서 Route에 응답
   console.log(req);
   res.send("Hello from my home!");
@@ -23,7 +24,7 @@ const handleProfile = (req, res) => res.send("You are on my Profile"); // 서버
 
 app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true })); // Route
 app.use(morgan("dev"));
 app.use(helmet());
 
@@ -31,6 +32,6 @@ app.get("/", handleHome); // Route
 
 app.get("/profile", handleProfile); // Route
 
-app.use("/user", userRouter);
+app.use("/user", userRouter); // Route
 
 export default app;
