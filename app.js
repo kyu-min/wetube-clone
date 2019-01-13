@@ -38,8 +38,8 @@ app.use(helmet()); // express의 한 기능이며, node.js의 보안을 위한 �
 app.use(morgan("dev")); // morgan이 이 단계에서 모든 걸 기억한다.
 
 app.use("/", globalRouter);
-app.use("/user", userRouter);
-app.use("/video", videoRouter);
+app.use("/users", userRouter);
+app.use("/videos", videoRouter);
 
 /*
 
