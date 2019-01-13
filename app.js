@@ -4,6 +4,7 @@ import helmet from "helmet"; // express 중, node.js의 보안을 위한 기능.
 import cookieParser from "cookie-parser"; // express 중, session을 다루기 위해 cookie에 유저 정보를 저장.
 import bodyParser from "body-parser"; //
 import { userRouter } from "./router";
+/* export const userRouter = express.Router();가 export default app;처럼 디폴트로 설정되지 않았기에 import 해주어야 한다.*/
 const app = express(); // var app = express(); 어플리케이션!
 
 const handleHome = (req, res) => {
@@ -32,7 +33,10 @@ app.get("/", handleHome); // Route, "/"가 Home임!
 
 app.get("/profile", handleProfile); // Route
 
-app.use("/user", userRouter); // Route
+app.use("/user", userRouter);
+/* 원래 app.get("/user")에 import한 userRouter를 준 것.
+   여기서 use의 의미는 누군가 /user 경로에 접속하면 이 router 전체를 사용하겠다는 의미.
+   */
 
 export default app; // init.js에서 app.js를 사용하기 위해 app object를 export!
 
@@ -55,4 +59,9 @@ export default app; // init.js에서 app.js를 사용하기 위해 app object를
    logging이란, 무슨 일이 어디에서 일어났는지를 기록하는 것이다.
    설치는 npm install morgan을 통해 할 수 있다.
    
-   helmet express는 node.js의 보안을 위한 것이다.*/
+   helmet express는 node.js의 보안을 위한 것이다.
+   
+   MVC= M : Model (모델은 데이터다.)
+        V : View (데이터가 어떻게 생겼는지.)
+        C : Control (컨트롤러는 데이터를 보여주는 함수.(= 데이터를 찾는 함수))
+   */
