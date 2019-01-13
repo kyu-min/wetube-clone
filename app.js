@@ -3,7 +3,9 @@ import morgan from "morgan"; // express 중, logging을 위한 기능.
 import helmet from "helmet"; // express 중, node.js의 보안을 위한 기능.
 import cookieParser from "cookie-parser"; // express 중, session을 다루기 위해 cookie에 유저 정보를 저장.
 import bodyParser from "body-parser"; //
-import { userRouter } from "./router";
+import userRouter from "./routers/userRouter";
+import videoRouter from "./routers/videoRouter";
+import globalRouter from "./routers/globalRouter";
 /* export const userRouter = express.Router();가 export default app;처럼 디폴트로 설정되지 않았기에 import 해주어야 한다.*/
 const app = express(); // var app = express(); 어플리케이션!
 
@@ -32,8 +34,12 @@ const handleProfile = (req, res) => res.send("You are on my Profile"); // 서버
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); // Route
-app.use(morgan("dev")); // morgan이 이 단계에서 모든 걸 기억한다.
 app.use(helmet()); // express의 한 기능이며, node.js의 보안을 위한 역할을 한다.
+app.use(morgan("dev")); // morgan이 이 단계에서 모든 걸 기억한다.
+
+app.use("/", globalRouter);
+app.use("/user", userRouter);
+app.use("/video", videoRouter);
 
 /*
 
