@@ -1,8 +1,8 @@
-import express from "express"; // express를 1. 폴더 목록에서 먼저 찾고 2. 만약 목록에 없을시, node_modules에서 express를 찾아라는 명령
-import morgan from "morgan"; // express 중, logging을 위한 기능.
-import helmet from "helmet"; // express 중, node.js의 보안을 위한 기능.
-import cookieParser from "cookie-parser"; // express 중, session을 다루기 위해 cookie에 유저 정보를 저장. 즉, cookie를 전달받아서 사용할 수 있도록 하는 미들웨어. ex) 사용자 인증같은 곳에서 쿠키를 검사할 때 사용해야 하기 때문.
-import bodyParser from "body-parser"; //
+import express from "express"; // express를 [1] 폴더 목록에서 먼저 찾고 -> [2] 만약 목록에 없을시, node_modules에서 express를 찾아라는 명령
+import morgan from "morgan"; // express 중, application에서 발생하는 모든 일들을 logging하기 위한 미들웨어. logging이란, 무슨 일이 어디에서 일어났는지를 기록하는 것이다.
+import helmet from "helmet"; // express 중, node.js의 보안을 위한 미들웨어. application이 더 안전하도록 만들어준다.
+import cookieParser from "cookie-parser"; // cookie를 전달받아서 사용할 수 있도록 하는 미들웨어. ex) 사용자 인증같은 곳에서 쿠키를 검사할 때 사용해야 하기 때문. 즉, express 중, session을 다루기 위해 cookie에 유저 정보를 저장.
+import bodyParser from "body-parser"; // 사용자가 웹사이트로 전달하는 정보들을 검사하는 미들웨어. request 정보에서 form이나 json 형태로 된 body를 검사한다.
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 import globalRouter from "./routers/globalRouter";
@@ -77,7 +77,6 @@ export default app; // init.js에서 app.js를 사용하기 위해 app object를
    말 그대로 가운데에 있는 소프트웨어라고 생각하자.
    
    Morgan은 logging에 도움을 주는 미들웨어다.
-   logging이란, 무슨 일이 어디에서 일어났는지를 기록하는 것이다.
    설치는 npm install morgan을 통해 할 수 있다.
    
    helmet express는 node.js의 보안을 위한 것이다.
