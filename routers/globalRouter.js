@@ -11,4 +11,5 @@ globalRouter.get(routes.join, join);
 globalRouter.get(routes.login, login);
 globalRouter.get(routes.logout, logout);
 
-export default globalRouter; // export default는 파일 전체로 export한다는 의미.
+export default globalRouter;
+// export default는 파일 전체로 export한다는 의미.

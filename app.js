@@ -33,6 +33,7 @@ const handleProfile = (req, res) => res.send("You are on my Profile"); // 서버
 
 */
 
+app.set("view engine", "pug");
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); // Route
@@ -44,19 +45,15 @@ app.use(routes.users, userRouter);
 app.use(routes.videos, videoRouter);
 
 /*
-
 app.get("/", handleHome); // Route, "/"가 Home임!
 
 app.get("/profile", handleProfile); // Route
-
-
 */
 
 /*
   app.use("/user", userRouter);
   원래 app.get("/user")에 import한 userRouter를 준 것.
   여기서 use의 의미는 누군가 /user 경로에 접속하면 이 router 전체를 사용하겠다는 의미.
-   
    */
 
 export default app; // init.js에서 app.js를 사용하기 위해 app object를 export!
@@ -82,7 +79,7 @@ export default app; // init.js에서 app.js를 사용하기 위해 app object를
    helmet express는 node.js의 보안을 위한 것이다.
    
    MVC= M : Model (모델은 데이터다.)
-        V : View (데이터가 어떻게 생겼는지.) = 템플릿(Template)
+        V : View (데이터가 어떻게 생겼는지.) = 템플릿(Template) ex) PUG는 express의 View 엔진이다. 즉, 템플릿 언어이다. pug는 html 파일들이 더 아름답게 보이도록 만들어준다.
         C : Control (컨트롤러는 데이터를 보여주는 함수.(= 데이터를 찾는 함수))
       
       즉, MVC를 일종의 끝내는 구조라고 생각하면 된다. 이건 그냥 패턴일 뿐.
