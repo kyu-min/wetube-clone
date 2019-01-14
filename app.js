@@ -1,7 +1,7 @@
 import express from "express"; // express를 1. 폴더 목록에서 먼저 찾고 2. 만약 목록에 없을시, node_modules에서 express를 찾아라는 명령
 import morgan from "morgan"; // express 중, logging을 위한 기능.
 import helmet from "helmet"; // express 중, node.js의 보안을 위한 기능.
-import cookieParser from "cookie-parser"; // express 중, session을 다루기 위해 cookie에 유저 정보를 저장.
+import cookieParser from "cookie-parser"; // express 중, session을 다루기 위해 cookie에 유저 정보를 저장. 즉, cookie를 전달받아서 사용할 수 있도록 하는 미들웨어. ex) 사용자 인증같은 곳에서 쿠키를 검사할 때 사용해야 하기 때문.
 import bodyParser from "body-parser"; //
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
@@ -83,7 +83,7 @@ export default app; // init.js에서 app.js를 사용하기 위해 app object를
    helmet express는 node.js의 보안을 위한 것이다.
    
    MVC= M : Model (모델은 데이터다.)
-        V : View (데이터가 어떻게 생겼는지.)
+        V : View (데이터가 어떻게 생겼는지.) = 템플릿(Template)
         C : Control (컨트롤러는 데이터를 보여주는 함수.(= 데이터를 찾는 함수))
       
       즉, MVC를 일종의 끝내는 구조라고 생각하면 된다. 이건 그냥 패턴일 뿐.
