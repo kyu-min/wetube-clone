@@ -3,10 +3,11 @@ import morgan from "morgan"; // express 중, application에서 발생하는 모�
 import helmet from "helmet"; // express 중, node.js의 보안을 위한 미들웨어. application이 더 안전하도록 만들어준다.
 import cookieParser from "cookie-parser"; // cookie를 전달받아서 사용할 수 있도록 하는 미들웨어. ex) 사용자 인증같은 곳에서 쿠키를 검사할 때 사용해야 하기 때문. 즉, express 중, session을 다루기 위해 cookie에 유저 정보를 저장.
 import bodyParser from "body-parser"; // 사용자가 웹사이트로 전달하는 정보들을 검사하는 미들웨어. request 정보에서 form이나 json 형태로 된 body를 검사한다.
+import { localsMiddleware } from "./middlewares";
+import routes from "./routes";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 import globalRouter from "./routers/globalRouter";
-import routes from "./routes";
 
 /* export const userRouter = express.Router();가 export default app;처럼 디폴트로 설정되지 않았기에 import 해주어야 한다.*/
 const app = express(); // var app = express(); 어플리케이션!
@@ -32,13 +33,13 @@ const handleProfile = (req, res) => res.send("You are on my Profile"); // 서버
 }; 
 
 */
-
+app.use(helmet()); // express의 한 기능이며, node.js의 보안을 위한 역할을 한다. 미들웨어는 위에서 아래로 순서대로 작동한다.
 app.set("view engine", "pug");
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); // Route
-app.use(helmet()); // express의 한 기능이며, node.js의 보안을 위한 역할을 한다.
 app.use(morgan("dev")); // morgan이 이 단계에서 모든 걸 기억한다.
+app.use(localsMiddleware);
 
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);
